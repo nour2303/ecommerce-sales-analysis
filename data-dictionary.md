@@ -1,6 +1,6 @@
 # Source data dictionary
 
-The original CSV in the [portfolio ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is semicolon-delimited and has 24 headers. These are the fields used to understand the project:
+The CSV in the [portfolio ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is semicolon-delimited, has 23 headers, and contains 95,264 data rows. Its count differs from the stakeholder report's source count; see the README's limitations. These are the fields used to understand the project:
 
 | Source field | Meaning / handling |
 | --- | --- |
