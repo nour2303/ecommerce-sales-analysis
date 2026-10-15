@@ -2,7 +2,7 @@
 
 **Question.** What drove the April–June 2022 revenue decline, and where should the business focus first?
 
-This is a portfolio analysis of an Amazon India sales export. I used MySQL for data cleaning and Power BI for the analysis, model, measures, and two-page dashboard. The source report describes 131,146 raw rows and 127,200 rows after cleaning. The publicly linked source ZIP contains **95,264 rows**, so the SQL review scripts below describe that extract and do not reproduce the report's row count. The report's figures are project findings, not realized improvements to the business.
+This is a portfolio analysis of an Amazon India sales export. I used MySQL for data cleaning and Power BI for the analysis, model, measures, and two-page dashboard. The source report describes 131,146 raw rows and 127,200 rows after cleaning. The publicly linked source ZIP contains **95,264 rows**, including 2,204 exact duplicate rows; it is not the report's cleaned 127,200-row dataset. The SQL review scripts below describe that linked extract and do not reproduce the report's row count. The report's figures are project findings, not realized improvements to the business.
 
 ## Findings
 
@@ -27,7 +27,7 @@ This is a portfolio analysis of an Amazon India sales export. I used MySQL for d
 
 ![Power BI overview](dashboard-overview.png)
 
-The [raw dataset ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is hosted with my portfolio. It contains the original semicolon-delimited CSV. The source data is not included again in this repository.
+The [source extract ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is hosted with my portfolio. It contains a semicolon-delimited CSV with 24 fields. The source data is not included again in this repository.
 
 ## Reproduce or review
 
@@ -39,4 +39,4 @@ The [raw dataset ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Da
 
 ## Limits
 
-The original cleaning notes include exploratory and malformed statements, so the published scripts select explicit, non-destructive rules and leave uncertain values blank. They have been reviewed against the linked CSV's fields but have **not** been executed in MySQL here. A second local Amazon CSV has 128,975 rows, while the linked ZIP has 95,264 and the report states 131,146 raw rows; these source versions have not been reconciled. The report describes a 17-measure model, but this repository does not claim an independently repeated row-by-row SQL-to-Power BI reconciliation. Cancellation and return value represents *potential* order value, not a proven recoverable amount.
+The original cleaning notes include exploratory and malformed statements, so the published scripts select explicit, non-destructive rules and leave uncertain values blank. They have been reviewed against the linked CSV's fields but have **not** been executed in MySQL here. The linked ZIP's 93,060 distinct full rows match rows in a second local Amazon CSV with 128,975 rows, but the ZIP also repeats 2,204 rows and omits much of that larger file. The report states 131,146 raw rows; these source versions have not been reconciled. The report describes a 17-measure model, but this repository does not claim an independently repeated row-by-row SQL-to-Power BI reconciliation. Cancellation and return value represents *potential* order value, not a proven recoverable amount.
