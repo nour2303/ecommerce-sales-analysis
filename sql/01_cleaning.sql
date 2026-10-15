@@ -52,8 +52,7 @@ FROM (
 ) AS ranked
 WHERE ranked.duplicate_rank = 1;
 
--- Review counts and unresolved source values. Do not expect the project PDF's
--- row counts: the linked ZIP is a different-sized source extract.
+-- Review counts and unresolved values in the sample extract.
 SELECT
   (SELECT COUNT(*) FROM amazon_sale_report) AS raw_rows,
   (SELECT COUNT(*) FROM amazon_sale_clean) AS rows_after_exact_dedupe;

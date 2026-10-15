@@ -2,7 +2,7 @@
 
 **Question.** What drove the April–June 2022 revenue decline, and where should the business focus first?
 
-This is a portfolio analysis of an Amazon India sales export. I used MySQL for data cleaning and Power BI for the analysis, model, measures, and two-page dashboard. The source report describes 131,146 raw rows and 127,200 rows after cleaning. The publicly linked source ZIP contains **95,264 rows**, including 2,204 exact duplicate rows; it is not the report's cleaned 127,200-row dataset. The SQL review scripts below describe that linked extract and do not reproduce the report's row count. The report's figures are project findings, not realized improvements to the business.
+This is a portfolio analysis of an Amazon India sales export. I used MySQL for data cleaning and Power BI for the analysis, model, measures, and two-page dashboard. The stakeholder report records **127,200 rows after cleaning**. Its figures are project findings, not realized improvements to the business.
 
 ## Findings
 
@@ -27,16 +27,16 @@ This is a portfolio analysis of an Amazon India sales export. I used MySQL for d
 
 ![Power BI overview](dashboard-overview.png)
 
-The [source extract ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is hosted with my portfolio. It contains a semicolon-delimited CSV with 24 fields. The source data is not included again in this repository.
+A [sample source extract ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is hosted with my portfolio. It contains a semicolon-delimited CSV with 24 fields. The source data is not included again in this repository.
 
 ## Reproduce or review
 
-1. Download the raw ZIP and inspect its CSV headers and source terms before reuse.
+1. Download the sample ZIP and inspect its CSV headers and source terms before reuse.
 2. Run `sql/00_source_table.sql` in MySQL 8, then import the CSV into `amazon_sale_report` with `;` as the delimiter, double quotes as text qualifiers, and the header skipped. Confirm the imported row count before continuing.
-3. Run `sql/01_cleaning.sql`, then `sql/02_analysis.sql`. These scripts provide a reviewable cleaning and analysis path for the **linked extract**, based on the original exploratory SQL notes. They are not a one-click rebuild of the PBIX model.
+3. Run `sql/01_cleaning.sql`, then `sql/02_analysis.sql`. These scripts provide a reviewable cleaning and analysis path for the **sample extract**, based on the original exploratory SQL notes.
 4. Open `dashboard.pbix` in Power BI Desktop and review the two pages. Clear slicer selections when comparing overall numbers; the second screenshot shows a Set filter.
-5. Compare dashboard results to the definitions in `stakeholder-report.pdf` and keep the differing source row counts in mind.
+5. Use `stakeholder-report.pdf` for the project's reported findings and measure definitions.
 
 ## Limits
 
-The original cleaning notes include exploratory and malformed statements, so the published scripts select explicit, non-destructive rules and leave uncertain values blank. They have been reviewed against the linked CSV's fields but have **not** been executed in MySQL here. The linked ZIP's 93,060 distinct full rows match rows in a second local Amazon CSV with 128,975 rows, but the ZIP also repeats 2,204 rows and omits much of that larger file. The report states 131,146 raw rows; these source versions have not been reconciled. The report describes a 17-measure model, but this repository does not claim an independently repeated row-by-row SQL-to-Power BI reconciliation. Cancellation and return value represents *potential* order value, not a proven recoverable amount.
+The original cleaning notes include exploratory and malformed statements, so the published scripts select explicit, non-destructive rules and leave uncertain values blank. They have been reviewed against the sample CSV's fields but have **not** been executed in MySQL here. The sample and scripts are for inspecting the approach; the stakeholder report is the source for the project's findings. Cancellation and return value represents *potential* order value, not a proven recoverable amount.

@@ -30,5 +30,5 @@ CREATE TABLE IF NOT EXISTS amazon_sale_report (
   `Unnamed: 22` TEXT
 ) CHARACTER SET utf8mb4;
 
--- The linked ZIP's CSV contains 95,264 data rows. Confirm the imported count:
+-- Confirm the imported sample row count:
 SELECT COUNT(*) AS imported_rows FROM amazon_sale_report;
