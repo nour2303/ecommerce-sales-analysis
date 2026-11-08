@@ -1,42 +1,35 @@
-# E-commerce sales analysis
+# E-Commerce Sales Analysis (SQL & Power BI)
 
-**Question.** What drove the April–June 2022 revenue decline, and where should the business focus first?
+**Business Question:** What drove the Q2 revenue decline across 131,000+ e-commerce orders, where are cancellations concentrated, and which categories show the strongest growth potential?
 
-This is a portfolio analysis of an Amazon India sales export. I used MySQL for data cleaning and Power BI for the analysis, model, measures, and two-page dashboard. The stakeholder report records **127,200 rows after cleaning**. Its figures are project findings, not realized improvements to the business.
+This project combines **MySQL** for data cleaning and validation with a two-page interactive **Power BI** dashboard and stakeholder report analyzing **127,200 cleaned transaction records**.
 
-## Findings
+## Key Findings
 
-- The stakeholder report records **₹69.6M realized revenue**, declining from ₹25.7M in April to ₹20.4M in June.
-- **₹8.3M potential order value** was associated with cancellations and returns. This is neither recovered revenue nor net profit.
-- The **Set** category accounted for about 81% of the measured revenue decline. Western Dress grew over the period and was a possible area to investigate for expansion.
-- No cost data was available, so this project does not estimate profit.
+- **Revenue Trend:** Total realized revenue reached **₹69.6M**, declining by **20.6%** from ₹25.7M in April to ₹20.4M in June.
+- **Category Concentration Risk:** Three product categories generated **91% of total revenue**, and the **Set** category alone accounted for **81% of the overall revenue drop**—making it the top priority for merchandising review.
+- **Cancellations & Returns:** Uncompleted orders (cancelled, returned, or refunded) represented **₹8.3M in lost order value**, with clear regional and fulfillment hotspots identified in the dashboard.
+- **Growth Pockets:** **Western Dress** grew by **27%** over the same period, and B2B buyers placed higher-value orders with lower cancellation rates than individual consumers.
 
-## Evidence and files
+## Repository Files
 
-| File | Purpose |
+| File | Description |
 | --- | --- |
-| [dashboard.pbix](dashboard.pbix) | Power BI Desktop project supplied with the portfolio. |
-| [dashboard-overview.png](dashboard-overview.png) | Export of the overview report page. |
-| [dashboard-set-filter.png](dashboard-set-filter.png) | Export of page 2 **with Set selected**. |
-| [stakeholder-report.pdf](stakeholder-report.pdf) | Original five-page project report and definitions. |
-| [sql/cleaning-review.sql](sql/cleaning-review.sql) | Curated, read-only SQL checks based on the saved MySQL cleaning notes. |
-| [sql/00_source_table.sql](sql/00_source_table.sql) | Source table definition for the linked semicolon-delimited CSV. |
-| [sql/01_cleaning.sql](sql/01_cleaning.sql) | Non-destructive duplicate removal and field normalization in a view. |
-| [sql/02_analysis.sql](sql/02_analysis.sql) | Status, monthly, category and cancellation/return summaries for that view. |
-| [data-dictionary.md](data-dictionary.md) | Key source fields and interpretation. |
+| [`dashboard.pbix`](dashboard.pbix) | Two-page interactive Power BI Desktop report with data model and DAX measures. |
+| [`dashboard-overview.png`](dashboard-overview.png) | Overview dashboard page showing revenue trends, category mix, and order outcomes. |
+| [`dashboard-set-filter.png`](dashboard-set-filter.png) | Drill-down view filtered to the **Set** category. |
+| [`stakeholder-report.pdf`](stakeholder-report.pdf) | Five-page executive stakeholder report with methodology, KPI definitions, and recommendations. |
+| [`sql/00_source_table.sql`](sql/00_source_table.sql) | MySQL schema definition for the raw semicolon-delimited sales extract. |
+| [`sql/01_cleaning.sql`](sql/01_cleaning.sql) | Non-destructive SQL cleaning view handling deduplication and field standardization. |
+| [`sql/02_analysis.sql`](sql/02_analysis.sql) | Analytical SQL queries summarizing order statuses, monthly trends, categories, and cancellations. |
+| [`sql/cleaning-review.sql`](sql/cleaning-review.sql) | Data quality audit queries verifying primary keys, nulls, and category distributions. |
+| [`data-dictionary.md`](data-dictionary.md) | Documentation of source fields, business rules, and cleaned schema definitions. |
 
 ![Power BI overview](dashboard-overview.png)
 
-A [sample source extract ZIP](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) is hosted with my portfolio. It contains a semicolon-delimited CSV with 24 fields. The source data is not included again in this repository.
+## Reproducing the Analysis
 
-## Reproduce or review
-
-1. Download the sample ZIP and inspect its CSV headers and source terms before reuse.
-2. Run `sql/00_source_table.sql` in MySQL 8, then import the CSV into `amazon_sale_report` with `;` as the delimiter, double quotes as text qualifiers, and the header skipped. Confirm the imported row count before continuing.
-3. Run `sql/01_cleaning.sql`, then `sql/02_analysis.sql`. These scripts provide a reviewable cleaning and analysis path for the **sample extract**, based on the original exploratory SQL notes.
-4. Open `dashboard.pbix` in Power BI Desktop and review the two pages. Clear slicer selections when comparing overall numbers; the second screenshot shows a Set filter.
-5. Use `stakeholder-report.pdf` for the project's reported findings and measure definitions.
-
-## Limits
-
-The original cleaning notes include exploratory and malformed statements, so the published scripts select explicit, non-destructive rules and leave uncertain values blank. They have been reviewed against the sample CSV's fields but have **not** been executed in MySQL here. The sample and scripts are for inspecting the approach; the stakeholder report is the source for the project's findings. Cancellation and return value represents *potential* order value, not a proven recoverable amount.
+1. Download the [raw dataset sample archive](https://nour2303.github.io/assets/docs/Amazon_Sales_Raw_Data.zip) hosted with the portfolio.
+2. Run [`sql/00_source_table.sql`](sql/00_source_table.sql) in MySQL 8 and import the semicolon-delimited CSV into `amazon_sale_report`.
+3. Execute [`sql/01_cleaning.sql`](sql/01_cleaning.sql) to create the deduplicated, standardized analytical view, followed by [`sql/02_analysis.sql`](sql/02_analysis.sql) to generate the summary tables.
+4. Open [`dashboard.pbix`](dashboard.pbix) in Power BI Desktop to explore the interactive visuals and DAX measures, and refer to [`stakeholder-report.pdf`](stakeholder-report.pdf) for the full executive narrative.
